@@ -76,24 +76,18 @@ public class CallBackQueryHandler extends BaseHandler {
         String data = callbackQuery.data();
         switch (data) {
             case "ROMANCE" -> {
-                SendMessage sendMessage = messageMakerAdmin.save(curUser, Janr.ROMANCE.name());
+
                 deleteMessage(message.messageId());
-                bot.execute(sendMessage);
             }
             case "DRAMA" -> {
-                SendMessage sendMessage = messageMakerAdmin.save(curUser, Janr.DRAMA.name());
+
                 deleteMessage(message.messageId());
-                bot.execute(sendMessage);
             }
             case "FANTACY" ->{
-                SendMessage sendMessage = messageMakerAdmin.save(curUser, Janr.FANTACY.name());
                 deleteMessage(message.messageId());
-                bot.execute(sendMessage);;
             }
             case "COMEDY" -> {
-                SendMessage sendMessage = messageMakerAdmin.save(curUser, Janr.COMEDY.name());
                 deleteMessage(message.messageId());
-                bot.execute(sendMessage);
             }
         }
     }
