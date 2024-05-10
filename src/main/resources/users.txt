@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1175039090,
+    "username": "angel_lady_16",
+    "firstname": "Дина💖",
+    "lastname": null,
+    "phoneNumber": "+998900970680",
+    "baseState": "MAIN_STATE",
+    "state": "SAVE"
+  }
+]
