@@ -22,6 +22,8 @@ public abstract class BaseHandler {
     protected ArchiveService archiveService;
     protected MessageMaker messageMaker;
     protected MessageMakerAdmin messageMakerAdmin;
+    protected BaseHandler messageHandlerAdmin ;
+    protected BaseHandler callBackQueryHandlerAdmin ;
     protected static final long ADMIN_ID = 1175039090;
 
     public BaseHandler() {
@@ -30,6 +32,8 @@ public abstract class BaseHandler {
         this.archiveService = BeanController.archiveServiceByThreadLocal.get();
         this.messageMaker = BeanController.messageMakerByThreadLocal.get();
         this.messageMakerAdmin = BeanController.messageMakerAdminByThreadLocal.get();
+        this.messageHandlerAdmin = new MessageHandlerAdmin();
+        this.callBackQueryHandlerAdmin = new CallBackQueryHandlerAdmin();
     }
 
     public abstract void handle(Update update);

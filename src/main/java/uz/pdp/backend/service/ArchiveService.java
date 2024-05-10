@@ -1,24 +1,20 @@
 package uz.pdp.backend.service;
 
 import uz.pdp.backend.model.Book;
-import uz.pdp.backend.jsonModels.currency.CurrencyInfo;
 import uz.pdp.backend.repository.FileWriterAndLoader;
 import uz.pdp.backend.statics.PathConstants;
 import uz.pdp.baen.BeanController;
 import uz.pdp.bot.states.child.Janr;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class ArchiveService implements BaseService, PathConstants {
 
     private FileWriterAndLoader<Book> writerAndLoader;
-    private CurrencyService currencyService;
 
     public ArchiveService() {
         this.writerAndLoader = new FileWriterAndLoader<>(ARCHIVES_PATH);
-        this.currencyService = BeanController.currencyServiceByThreadLocal.get();
     }
 
     public void save(Book book){

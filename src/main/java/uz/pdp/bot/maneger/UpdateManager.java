@@ -9,9 +9,7 @@ import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
 import uz.pdp.bot.Bot;
-import uz.pdp.bot.handlers.BaseHandler;
-import uz.pdp.bot.handlers.CallBackQueryHandler;
-import uz.pdp.bot.handlers.MessageHandler;
+import uz.pdp.bot.handlers.*;
 
 public class UpdateManager {
 

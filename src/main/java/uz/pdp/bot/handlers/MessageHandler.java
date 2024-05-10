@@ -16,7 +16,7 @@ public class MessageHandler extends BaseHandler{
         super.update = update;
         super.curUser = getUserOrCreate(from);
         if (Objects.equals(curUser.getId(),ADMIN_ID)){
-            adminMenu();
+            messageHandlerAdmin.handle(update);
         } else {
             String text = message.text();
             if (Objects.equals(text,"/start")){
@@ -33,13 +33,6 @@ public class MessageHandler extends BaseHandler{
                 }
             }
         }
-    }
-
-    private void adminMenu() {
-        curUser.setState(AdminState.ADMIN_STATE.name());
-        userService.save(curUser);
-        SendMessage sendMessage = messageMakerAdmin.adminMenu(curUser);
-        bot.execute(sendMessage);
     }
 
     private void mainState() {
