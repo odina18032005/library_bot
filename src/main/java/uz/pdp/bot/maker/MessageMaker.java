@@ -8,6 +8,9 @@ import com.pengrad.telegrambot.request.SendMessage;
 import uz.pdp.backend.model.Book;
 import uz.pdp.backend.model.MyUser;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MessageMaker {
 
     public SendMessage mainMenu(MyUser curUser){
@@ -27,30 +30,23 @@ public class MessageMaker {
         sendMessage.replyMarkup(markup);
         return sendMessage;
     }
-    public SendMessage enterDateForArchive(MyUser curUser){
-        SendMessage sendMessage = new SendMessage(curUser.getId(), "Enter Date (dd/mm/yyyy):");
-        InlineKeyboardButton[][] buttons = {
-                {
-                        new InlineKeyboardButton("Back").callbackData("BACK")
-                }
-        };
-        InlineKeyboardMarkup markup = new InlineKeyboardMarkup(buttons);
-        sendMessage.replyMarkup(markup);
-        return sendMessage;
-    }
-     public SendMessage showResultForArchive(MyUser curUser, Book book){
 
-        String text = """
-                Result:
-                    %s
+     public SendMessage showResultForArchive(MyUser curUser, List<Book> books){
+        String message="";
+        for (Book book : books) {
+            String text = """
                     Name: %s
                     Discription: %s
-                """.formatted(book.getPhotoId(),book.getName(),book.getDiscription());
+                    Link: /%s (click for get Book)
+                """.formatted(book.getName(),book.getDiscription(),book.getBookId());
+            String string = new SendMessage(curUser.getId(), text).toString();
+            message=message +"\n"+string;
+        }
+        SendMessage sendMessage = new SendMessage(curUser.getId(),message);
 
-        SendMessage sendMessage = new SendMessage(curUser.getId(), text);
+
         InlineKeyboardButton[][] buttons = {
                 {
-                        new InlineKeyboardButton("Read").callbackData("READ"),
                         new InlineKeyboardButton("Back").callbackData("BACK")
                 }
         };
@@ -58,6 +54,8 @@ public class MessageMaker {
         sendMessage.replyMarkup(markup);
         return sendMessage;
     }
+
+
 
     public SendMessage enterPhoneNumber(MyUser curUser){
         SendMessage sendMessage = new SendMessage(curUser.getId(), "Enter Phone Number");

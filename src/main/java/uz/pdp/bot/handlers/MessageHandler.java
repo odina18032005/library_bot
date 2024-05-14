@@ -1,6 +1,7 @@
 package uz.pdp.bot.handlers;
 
 import com.pengrad.telegrambot.model.*;
+import com.pengrad.telegrambot.request.SendDocument;
 import com.pengrad.telegrambot.request.SendMessage;
 import uz.pdp.bot.states.base.BaseState;
 import uz.pdp.bot.states.child.AdminState;
@@ -16,7 +17,7 @@ public class MessageHandler extends BaseHandler{
         super.update = update;
         super.curUser = getUserOrCreate(from);
         if (Objects.equals(curUser.getId(),ADMIN_ID)){
-            messageHandlerAdmin.handle(update);
+            adminMenu();
         } else {
             String text = message.text();
             if (Objects.equals(text,"/start")){
@@ -33,6 +34,12 @@ public class MessageHandler extends BaseHandler{
                 }
             }
         }
+    }
+    private void adminMenu() {
+        curUser.setState(AdminState.ADMIN_STATE.name());
+        userService.save(curUser);
+        SendMessage sendMessage = messageMakerAdmin.adminMenu(curUser);
+        bot.execute(sendMessage);
     }
 
     private void mainState() {

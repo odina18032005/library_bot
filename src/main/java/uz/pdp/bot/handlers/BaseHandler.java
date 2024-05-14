@@ -4,6 +4,7 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.User;
 import com.pengrad.telegrambot.request.DeleteMessage;
+import uz.pdp.backend.model.Book;
 import uz.pdp.backend.model.MyUser;
 import uz.pdp.backend.service.ArchiveService;
 import uz.pdp.backend.service.UserService;
@@ -22,8 +23,7 @@ public abstract class BaseHandler {
     protected ArchiveService archiveService;
     protected MessageMaker messageMaker;
     protected MessageMakerAdmin messageMakerAdmin;
-    protected BaseHandler messageHandlerAdmin ;
-    protected BaseHandler callBackQueryHandlerAdmin ;
+//    protected static final long ADMIN_ID = 1279888934;
     protected static final long ADMIN_ID = 1175039090;
 
     public BaseHandler() {
@@ -32,8 +32,6 @@ public abstract class BaseHandler {
         this.archiveService = BeanController.archiveServiceByThreadLocal.get();
         this.messageMaker = BeanController.messageMakerByThreadLocal.get();
         this.messageMakerAdmin = BeanController.messageMakerAdminByThreadLocal.get();
-        this.messageHandlerAdmin = new MessageHandlerAdmin();
-        this.callBackQueryHandlerAdmin = new CallBackQueryHandlerAdmin();
     }
 
     public abstract void handle(Update update);
@@ -53,6 +51,18 @@ public abstract class BaseHandler {
             userService.save(myUser);
         }
         return myUser;
+    }
+    protected Book createBook(String data,String photoId,String name,String disctription,String bookId,String janr){
+        Book newBook = Book.builder()
+                .currency(data)
+                .photoId(photoId)
+                .name(name)
+                .discription(disctription)
+                .bookId(bookId)
+                .janr(janr)
+                .build();
+        archiveService.save(newBook);
+        return newBook;
     }
 
     protected void deleteMessage(int messageId){

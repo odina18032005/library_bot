@@ -18,6 +18,25 @@ public class MessageMakerAdmin {
         sendMessage.replyMarkup(markup);
         return sendMessage;
     }
+
+    public SendMessage enterNameForArchive(MyUser curUser){
+        SendMessage sendMessage = new SendMessage(curUser.getId(), "Enter name: ");
+        InlineKeyboardButton[][] buttons = {
+                {
+                        new InlineKeyboardButton("Back").callbackData("BACK")
+                }
+        };
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup(buttons);
+        sendMessage.replyMarkup(markup);
+        return sendMessage;
+    }
+
+
+
+    /*public SendMessage enterDiscriptionForArchive(MyUser curUser){}
+    public SendMessage enterPhotoForArchive(MyUser curUser){}
+    public SendMessage enterFileForArchive(MyUser curUser){}*/
+
     public SendMessage showJanrBook(MyUser curUser) {
         SendMessage sendMessage = new SendMessage(curUser.getId(), "Add Book: ");
         InlineKeyboardButton[][] buttons = {

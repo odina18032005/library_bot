@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Bot {
-    public static final String BOT_TOKEN = "7170451931:AAHH3M91hJRpmorsK0tk987IBJxulS-zjEo";
+    public static final String BOT_TOKEN = "7177847973:AAHzJ0la71QceUfM51dCnok7tkCMGcLskFQ";
     static final ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     static  ThreadLocal<UpdateManager> updateHandlerThreadLocal = ThreadLocal.withInitial(UpdateManager::new);
     public static void main(String[] args) {

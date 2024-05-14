@@ -1,5 +1,6 @@
 package uz.pdp.backend.service;
 
+import kotlin.collections.ArrayDeque;
 import uz.pdp.backend.model.Book;
 import uz.pdp.backend.repository.FileWriterAndLoader;
 import uz.pdp.backend.statics.PathConstants;
@@ -29,7 +30,17 @@ public class ArchiveService implements BaseService, PathConstants {
         }
         archives.add(book);
         writerAndLoader.write(archives);
-        return;
+    }
+    public List<Book> getBooks(Janr janr){
+        List<Book> result = new ArrayDeque<>();
+        List<Book> archives = writerAndLoader.load(Book.class);
+        for (int i = 0; i < archives.size(); i++) {
+            Book book = archives.get(i);
+            if (Objects.equals(book.getJanr(),janr)){
+                result.add(book);
+            }
+        }
+        return result;
     }
     public Book get(Janr janr){
         List<Book> archives = writerAndLoader.load(Book.class);
@@ -41,23 +52,4 @@ public class ArchiveService implements BaseService, PathConstants {
         }
         return null;
     }
-//    public Book getResult(Long id){
-//        Book archive = get(id);
-//        Date date = archive.getDate();
-//        String currency = archive.getCurrency();
-//        if (date!=null&&Objects.nonNull(currency)&&!currency.isEmpty()){
-//            try {
-//                CurrencyInfo[] currencyByNameAndDate = currencyService.getCurrencyByNameAndDate(currency, date);
-//                CurrencyInfo currencyInfo = currencyByNameAndDate[0];
-//                String rate = currencyInfo.getRate();
-//                archive.setRate(rate);
-//                save(archive);
-//                return archive;
-//            } catch (Exception e) {
-//                return null;
-//            }
-//        }else {
-//            return null;
-//        }
-//    }
 }
