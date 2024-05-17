@@ -1,0 +1,42 @@
+[
+  {
+    "id": "7e640ab4-4313-40f2-80f6-901e82d5083c",
+    "photoId": "AgACAgIAAxkBAANmZkcvRIjR7usUtztodOOExd5BHxoAApvnMRtGs0FKuMeX2pOhtyQBAAMCAANzAAM1BA",
+    "name": "Hamlet",
+    "author": "Javohir",
+    "discription": "Nimadur bor",
+    "bookId": "BQACAgIAAxkBAANpZkcvVVpjIpgWVfNMzlXVQhgh7MsAAmVIAAJGs0FKFQnHxrXzRXE1BA",
+    "janr": "ROMANCE",
+    "isAdded": true
+  },
+  {
+    "id": "d0b96904-6729-48bd-a0b7-4ba0b7e14adb",
+    "photoId": "AgACAgIAAxkBAAIDRmZHNGktImyt1vkMsh4kkj3hQSBsAAKL3zEbxDU5Sr8DXvCFOe9cAQADAgADcwADNQQ",
+    "name": "onam",
+    "author": "xcbsajcbhjki",
+    "discription": "xsaxsa",
+    "bookId": "BQACAgIAAxkBAAIDSWZHNHiD6l23qP4e7NBV_5xM_JhMAAKLTAACxDU5Sv3t4yQ6MtapNQQ",
+    "janr": "ROMANCE",
+    "isAdded": true
+  },
+  {
+    "id": "0c6825cb-a417-4ed9-9e31-e7dd46b068e3",
+    "photoId": "AgACAgIAAxkBAAIDWmZHNKlRnXbwu2IUDfRWdpjK20ncAAKN3zEbxDU5SkMjJx3poHwCAQADAgADcwADNQQ",
+    "name": "u men",
+    "author": "cdscds",
+    "discription": "csdcdsc",
+    "bookId": "BQACAgIAAxkBAAIDXWZHNLaROCnThOb2R35DDoox9VzSAAKXTAACxDU5SkBdXl40r97DNQQ",
+    "janr": "ROMANCE",
+    "isAdded": true
+  },
+  {
+    "id": "f6913bc2-df4c-4bab-b7b4-e0a77f298764",
+    "photoId": "AgACAgIAAxkBAAIDbGZHNPtKegjC0u1YMYjWecihsuHXAAKO3zEbxDU5Sue5i_YyabB7AQADAgADcwADNQQ",
+    "name": "kim",
+    "author": "xsa",
+    "discription": "kuyk",
+    "bookId": "BQACAgIAAxkBAAIDb2ZHNQdts2KJMMzD2vv1vHeGBmB_AAKgTAACxDU5St_R-0wDd7_BNQQ",
+    "janr": "DRAMA",
+    "isAdded": true
+  }
+]

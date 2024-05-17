@@ -5,25 +5,40 @@ import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.KeyboardButton;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.request.SendPhoto;
 import uz.pdp.backend.model.Book;
 import uz.pdp.backend.model.MyUser;
+import uz.pdp.bot.states.child.Janr;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class MessageMaker {
 
-    public SendMessage mainMenu(MyUser curUser){
-        SendMessage sendMessage = new SendMessage(curUser.getId(), "Main Menu");
+    public SendMessage
+    mainMenu(MyUser curUser){
+        SendMessage sendMessage = new SendMessage(curUser.getId(), "Main Menu: ");
         InlineKeyboardButton[][] buttons = {
                 {
-                        new InlineKeyboardButton("Romance").callbackData("ROMANCE"),
-                        new InlineKeyboardButton("Drama").callbackData("DRAMA")
+                        new InlineKeyboardButton("Add").callbackData("ADD"),
+                        new InlineKeyboardButton("Search").callbackData("SEARCH")
+
+                }
+        };
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup(buttons);
+        sendMessage.replyMarkup(markup);
+        return sendMessage;
+    }
+    public SendMessage chooseJanr(MyUser curUser){
+        SendMessage sendMessage = new SendMessage(curUser.getId(), "Choose janr: ");
+        InlineKeyboardButton[][] buttons = {
+                {
+                        new InlineKeyboardButton("Romance").callbackData(Janr.ROMANCE.name()),
+                        new InlineKeyboardButton("Drama").callbackData(Janr.DRAMA.name())
 
                 },
                 {
-                        new InlineKeyboardButton("Fantacy").callbackData("FANTACY"),
-                        new InlineKeyboardButton("Comedy").callbackData("COMEDY")
+                        new InlineKeyboardButton("Fantacy").callbackData(Janr.FANTACY.name()),
+                        new InlineKeyboardButton("Comedy").callbackData(Janr.COMEDY.name())
                 }
         };
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup(buttons);
@@ -31,29 +46,29 @@ public class MessageMaker {
         return sendMessage;
     }
 
-     public SendMessage showResultForArchive(MyUser curUser, List<Book> books){
-        String message="";
-        for (Book book : books) {
-            String text = """
-                    Name: %s
-                    Discription: %s
-                    Link: /%s (click for get Book)
-                """.formatted(book.getName(),book.getDiscription(),book.getBookId());
-            String string = new SendMessage(curUser.getId(), text).toString();
-            message=message +"\n"+string;
-        }
-        SendMessage sendMessage = new SendMessage(curUser.getId(),message);
-
+     public SendPhoto showResultForArchive(MyUser curUser, Book book){
+        String text;
+        SendPhoto sendPhoto = new SendPhoto(curUser.getId(), book.getPhotoId());
+        text = """
+            Name: %s
+            
+            Author: %s
+            
+            Discription: %s""".formatted(book.getName(),book.getAuthor(),book.getDiscription());
+        sendPhoto.caption(text);
 
         InlineKeyboardButton[][] buttons = {
                 {
+                        new InlineKeyboardButton("Read").callbackData(book.getId()),
                         new InlineKeyboardButton("Back").callbackData("BACK")
                 }
         };
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup(buttons);
-        sendMessage.replyMarkup(markup);
-        return sendMessage;
-    }
+        sendPhoto.replyMarkup(markup);
+
+        return sendPhoto;
+
+     }
 
 
 
